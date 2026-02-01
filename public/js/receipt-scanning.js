@@ -1015,6 +1015,22 @@ class ReceiptUploader {
       // Show success message
       alert('Expense created successfully!');
       
+      // Add the new expense to the local expenses array if it exists
+      if (typeof expenses !== 'undefined' && result.id) {
+        const newExpense = {
+          id: result.id,
+          description: expenseData.description,
+          amount: expenseData.amount,
+          payer: expenseData.payer,
+          date: expenseData.date,
+          category: expenseData.category,
+          participants: expenseData.participants,
+          shares: expenseData.shares
+        };
+        expenses.push(newExpense);
+        console.log('Added new expense to local array:', newExpense);
+      }
+      
       // Navigate to expenses list
       this.showTripSection('expenses-list');
       
